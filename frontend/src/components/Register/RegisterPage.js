@@ -123,10 +123,10 @@ export default function SignUp() {
               <label>District</label>
               <select {...register("district", { required: true })}>
                 <option value="">Select District</option>
-                <option value="galle">Galle</option>
-                <option value="hambantota">Hambantota</option>
-                <option value="matara">Matara</option>
-                <option value="colombo">Colombo</option>
+                <option value="ghaziabad">Ghaziabad</option>
+                <option value="Bulandshahr">Bulandshahr</option>
+                <option value="Hapur">Hapur</option>
+                <option value="merrut">merrut</option>
               </select>
               {errors.district && (
                 <span className="error">District is required</span>
