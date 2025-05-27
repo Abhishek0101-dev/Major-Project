@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../NavbarRegistered/NavbarRegistered";
-//import RegisterPopup from "../Register/RegisterPage";
 import "./RegUserHomePage.css";
 import Categories from "../../Catoegories/Categories";
-//import CarouselCategory from "../Carousel/CarouselCategory";
-//import TypeWriter from "../AutoWritingText/TypeWriter";
 import Video from "../../ProcessLine/Video";
-//import Footer from "../Footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import KeyFeatures from "../../KeyFeatures/KeyFeatures";
 import FooterNew from "../../Footer/FooterNew";
-//import RegisterPage from "../Register/RegisterPage";
 
 function RegUserHomePage() {
-  const [userData, setUserData] = useState("");
+  const [userData, setUserData] = useState({});
   const [userRole, setUserRole] = useState("");
-  useEffect(() => {
-    let url = "";
 
-    switch (userRole) {
+  useEffect(() => {
+    // Get role from local storage (set this at login or registration)
+    const role = localStorage.getItem("userRole");
+    setUserRole(role);
+
+    let url = "";
+    switch (role) {
       case "Farmer":
         url = "http://localhost:8070/farmer/userdata";
         break;
@@ -30,7 +29,8 @@ function RegUserHomePage() {
         url = "http://localhost:8070/deliveryman/userdata";
         break;
       default:
-        break;
+        console.warn("Invalid or missing user role.");
+        return;
     }
 
     fetch(url, {
@@ -47,15 +47,18 @@ function RegUserHomePage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "userData");
-
-        setUserData(data.data);
+        console.log("userData received:", data);
 
         if (data.data === "token expired") {
-          alert("Token expired login again");
-          window.localStorage.clear();
+          alert("Token expired, please log in again.");
+          localStorage.clear();
           window.location.href = "./login";
+        } else {
+          setUserData(data.data);
         }
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
       });
   }, []);
 
@@ -68,7 +71,7 @@ function RegUserHomePage() {
         className="crop"
       />
       <div className="salutaion-container">
-        <h2>Hello Firstname, </h2>
+        <h2>Hello, {userData?.fname} {userData?.lname}</h2>
       </div>
 
       <div className="profile-container">
@@ -78,7 +81,7 @@ function RegUserHomePage() {
             alt="Farmer"
             className="profile-img"
           />
-          <p className="section-name">Framer Section</p>
+          <p className="section-name">Farmer Section</p>
         </a>
         <a className="profile" href="/regseller">
           <img
@@ -86,7 +89,7 @@ function RegUserHomePage() {
             alt="Seller"
             className="profile-img"
           />
-          <p className="section-name">Framer Section</p>
+          <p className="section-name">Seller Section</p>
         </a>
         <a className="profile" href="/regdeliveryman">
           <img
@@ -94,7 +97,7 @@ function RegUserHomePage() {
             alt="Deliveryman"
             className="profile-img"
           />
-          <p className="section-name">Framer Section</p>
+          <p className="section-name">Deliveryman Section</p>
         </a>
       </div>
 

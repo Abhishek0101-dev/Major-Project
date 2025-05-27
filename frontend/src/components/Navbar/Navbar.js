@@ -63,7 +63,7 @@ function Navbar() {
               </ul>
             </li>
             <li className="about">
-              <a className="nav-link" href="/about">
+              <a className="nav-link" href="#">
                 About
               </a>
             </li>

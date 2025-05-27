@@ -8,17 +8,17 @@ function Login() {
   const [password, setPassword] = useState("");
   const [userRole, setUserRole] = useState("");
 
+  // 
   function handleSubmit(e) {
     e.preventDefault();
-
-    // Check if email or userRole is empty
+  
     if (!email || !password || !userRole) {
       alert("Please fill in all fields.");
       return;
     }
-
+  
     let url = "";
-
+  
     switch (userRole) {
       case "Farmer":
         url = "http://localhost:8070/farmer/login";
@@ -28,12 +28,11 @@ function Login() {
         break;
       case "Deliveryman":
         url = "http://localhost:8070/deliveryman/login";
-        console.log(email, password, userRole);
         break;
       default:
-        break;
+        return;
     }
-
+  
     fetch(url, {
       method: "POST",
       crossDomain: true,
@@ -50,11 +49,12 @@ function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "userRegister");
+        console.log(data, "userLogin");
         if (data.status === "ok") {
           alert("Login successful");
           window.localStorage.setItem("token", data.data);
-          window.location.href = "/homepage-registeredusers"; // Redirect to homepage based on user role
+          window.localStorage.setItem("userRole", userRole); // ✅ Save role
+          window.location.href = "/homepage-registeredusers";
         } else {
           alert("Login failed. Please check your credentials.");
         }
@@ -64,6 +64,7 @@ function Login() {
         alert("Login failed. Please try again later.");
       });
   }
+  
 
   return (
     <div>

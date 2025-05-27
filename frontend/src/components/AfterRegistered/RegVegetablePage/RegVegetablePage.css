@@ -133,4 +133,77 @@
   text-decoration: none;
 }
 
+.add-vegetable-form-container {
+  width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f4f4f4;
+  border-radius: 12px;
+  border: 2px solid #ddd;
+}
+
+.add-vegetable-form-container h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.add-vegetable-form-container input,
+.add-vegetable-form-container button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.add-vegetable-form-container button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+}
+
+.add-vegetable-form-container button:hover {
+  background-color: #218838;
+}
+.action-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.edit-btn {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+.edit-btn:hover {
+  background-color: #e0a800;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
 /* ... (other styles) ... */
+.products-container-veg {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  padding: 10px;
+  padding-bottom: 140px; /* <-- ADD THIS */
+}

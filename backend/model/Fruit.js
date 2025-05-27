@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
-const vegetableSchema = new mongoose.Schema({
+const fruitSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
   },
   category: {
     type: String,
-    default: "Vegetable",
+    default: "Fruit",
   },
   image: {
     type: String,
@@ -22,6 +22,6 @@ const vegetableSchema = new mongoose.Schema({
   },
 });
 
-const Vegetable = mongoose.model("Vegetable", vegetableSchema);
+const Fruit = mongoose.model("Fruit", fruitSchema);
 
-module.exports = Vegetable;
+module.exports = Fruit;

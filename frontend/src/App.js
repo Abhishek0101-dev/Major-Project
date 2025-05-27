@@ -55,6 +55,7 @@ function App() {
         <Route path="/reggrain" element={<RegGrainsPage />} />
         <Route path="/regspices" element={<RegSpicesPage />} />
         <Route path="/regother" element={<RegOtherPage />} />
+        
       </Routes>
     </Router>
   );

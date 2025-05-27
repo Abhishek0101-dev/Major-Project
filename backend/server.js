@@ -10,6 +10,8 @@ const PORT = process.env.PORT || 8070;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
+app.use("/uploads", express.static("uploads"));
+
 
 const URL = process.env.MONGODB_URL;
 console.log("MongoDB URL:", URL);
@@ -41,6 +43,13 @@ app.use("/deliverypost", deliveryPostRouter); //http://localhost:8070/sellerorde
 
 const deliverymanRouter = require("./routes/deliverymen");
 app.use("/deliveryman", deliverymanRouter); //http://localhost:8070/both
+
+const vegetableRouter = require("./routes/vegetables");
+app.use("/vegetable", vegetableRouter);
+const fruitRoute = require("./routes/Fruit");
+app.use("/fruit", fruitRoute);
+
+
 
 app.listen(PORT, () => {
   console.log(`Server is up and running on port number: ${PORT}`);
